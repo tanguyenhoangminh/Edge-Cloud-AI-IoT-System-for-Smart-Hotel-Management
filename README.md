@@ -5,6 +5,8 @@
 > June 2026
 
 **[🌐 Live Demo →](https://hotel-project-mosquitto.vercel.app/)**  
+username: admin
+password:123456
 No installation needed — the app is fully deployed and accessible from any browser.
 
 ---
