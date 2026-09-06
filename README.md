@@ -55,7 +55,7 @@ Four custom PCBs were designed in Altium Designer and fabricated on two-layer FR
 
 | Module | MCU | Key Components |
 |--------|-----|----------------|
-| **Battery-Powered Sensor Node** | ESP-12F | DHT11, HC-SR501 PIR, MQ-135, LiPo 500mAh + TP4056, T64 boost |
+| **Battery-Powered Sensor Node** | ESP-12F | Sensors, LiPo 500mAh + TP4056, T64 boost |
 | **Lighting Dimming Control** | ESP-12F | AO3400 MOSFET, PWM dimming, 4N35 optocoupler feedback, HLK-20M12 |
 | **Fan Speed Regulation** | ESP-12F | BT136-600E TRIAC, phase-angle control, H11AA1 zero-cross detection |
 | **Door Lock & Alarm** | ESP-12F (NodeMCU) | TIP122 solenoid driver, BC547B buzzer switch, LM7805T |
