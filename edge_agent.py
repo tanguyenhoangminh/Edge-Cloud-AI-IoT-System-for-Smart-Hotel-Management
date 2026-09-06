@@ -1,25 +1,16 @@
-"""
-edge_agent.py (Bản tối ưu chạy Local trên Raspberry Pi 4)
-- Đọc snapshot trực tiếp từ localhost:5000 (độ trễ < 5ms)
-- Chạy suy luận RandomForest cục bộ
-- Tự động can thiệp thiết bị thông minh (có kiểm tra chống spam lệnh)
-- Ghi log độ trễ suy luận vào bảng perf_metric
-"""
-
 import time
 import requests
 import joblib
 import pandas as pd
 
-# ──────────────────────────────────────────────
-# KẾT NỐI TRỰC TIẾP LOCALHOST TRÊN PI 4
+
 API_BASE     = 'https://backend-cz3y.onrender.com'
 ROOM_NUMBERS = ['0101']
 POLL_S       = 10
 # Phòng thực tế có gắn mạch ESP8266
 ROOM_NUMBERS = [f'01{i:02d}' for i in range(1, 11)]
 GATEWAY_ID   = 1
-# ──────────────────────────────────────────────
+
 
 IOT_URL     = f'{API_BASE}/api/iot'
 PRED_URL    = f'{API_BASE}/api/prediction'
@@ -37,7 +28,7 @@ def load_models():
         'humidity': joblib.load('humidity_model.joblib'),
         'energy':   joblib.load('energy_model.joblib'),
     }
-    print(f'✅ Đã nạp thành công {len(MODELS)} mô hình AI | Features: {list(FEATURES)}')
+    print(f' Đã nạp thành công {len(MODELS)} mô hình AI | Features: {list(FEATURES)}')
 
 def fetch_snapshot(room_number):
     r = requests.get(f'{IOT_URL}/{room_number}', timeout=2)
@@ -108,7 +99,7 @@ def push_control(room_number, actions):
             r.raise_for_status()
             applied.append(act)
         except requests.RequestException as e:
-            print(f'⚠️ [Control Fail] Phòng {room_number} ({act}): {e}')
+            print(f' [Control Fail] Phòng {room_number} ({act}): {e}')
     return applied
 
 def post_prediction(room_number, preds):
@@ -150,7 +141,7 @@ def run_once(room_number):
     if actions:
         applied = push_control(room_number, actions)
         if applied:
-            print(f'🤖 [Phòng {room_number}] AI can thiệp thiết bị: {applied}')
+            print(f' [Phòng {room_number}] AI can thiệp thiết bị: {applied}')
 
     result = post_prediction(room_number, preds)
     log_performance(infer_latency)
@@ -163,15 +154,15 @@ def run_once(room_number):
 
 def main():
     load_models()
-    print(f'🔁 Bắt đầu vòng lặp Edge AI Agent (chu kỳ {POLL_S}s) cho phòng: {ROOM_NUMBERS}\n')
+    print(f' Bắt đầu vòng lặp Edge AI Agent (chu kỳ {POLL_S}s) cho phòng: {ROOM_NUMBERS}\n')
     while True:
         for room in ROOM_NUMBERS:
             try:
                 run_once(room)
             except requests.RequestException as e:
-                print(f'⚠️ Lỗi kết nối phòng {room}: {e}')
+                print(f' Lỗi kết nối phòng {room}: {e}')
             except Exception as e:
-                print(f'❌ Lỗi xử lý phòng {room}: {e}')
+                print(f' Lỗi xử lý phòng {room}: {e}')
         time.sleep(POLL_S)
 
 if __name__ == '__main__':
