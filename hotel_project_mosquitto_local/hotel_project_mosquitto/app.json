@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "hotel_project",
+    "slug": "hotel_project",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.minhminhminh077.hotel_project"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "Allow Hotel IoT to access the microphone for voice commands.",
+          "speechRecognitionPermission": "Allow Hotel IoT to recognize English voice commands."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "c758513a-a57a-4c90-9f11-5c758a01d940"
+      }
+    }
+  }
+}
