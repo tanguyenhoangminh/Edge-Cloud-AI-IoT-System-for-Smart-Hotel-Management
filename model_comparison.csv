@@ -1,0 +1,10 @@
+target,model,rmse,mae,r2
+next_co2,DecisionTree,1.16312,1.00514,0.9995
+next_co2,RandomForest,1.15862,1.00247,0.9995
+next_co2,XGBoost,1.22011,1.01751,0.9994
+next_humidity,DecisionTree,0.29075,0.25103,0.9983
+next_humidity,RandomForest,0.29,0.2506,0.9983
+next_humidity,XGBoost,0.29181,0.25106,0.9983
+next_energy_kwh,DecisionTree,0.00217,0.00171,0.9943
+next_energy_kwh,RandomForest,0.00217,0.0017,0.9944
+next_energy_kwh,XGBoost,0.00217,0.00171,0.9944
